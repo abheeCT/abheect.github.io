@@ -1,1 +1,147 @@
-<h1> hwllo world -base </h1>
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<script type="text/javascript">
+     var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
+ // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
+ clevertap.enablePersonalization = true;
+clevertap.account.push({"id": "TEST-94W-W77-4K5Z"});
+clevertap.privacy.push({optOut: false}); //set the flag to true, if the user of the device opts out of sharing their data
+clevertap.privacy.push({useIP: false}); //set the flag to true, if the user agrees to share their IP data
+ (function () {
+		 var wzrk = document.createElement('script');
+		 wzrk.type = 'text/javascript';
+		 wzrk.async = true;
+		 wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
+		 var s = document.getElementsByTagName('script')[0];
+		 s.parentNode.insertBefore(wzrk, s);
+  })();
+
+ 
+/*clevertap.onUserLogin.push({
+ "Site": {
+   "Name": "K Malleshwari",            // String             // String or 
+   "Email": "kmal@gmail.com",         // Email address of the user
+   "Phone": "+911234567845",           // Phone (with the country code)
+   "Gender": "F",                     // Can be either M or F
+   }
+});*/
+
+
+// Automatic Population. Check THis and Test This
+
+function populateUser(){
+    clevertap.onUserLogin.push({
+ "Site": {
+   "Name": document.getElementById('Name1').value,            // String             // String or 
+   "Email": document.getElementById('Email1').value,         // Email address of the user
+   "Phone": document.getElementById('Telephone1').value,           // Phone (with the country code)
+   "Gender": document.querySelector('input[name="gender"]:checked').value,                     // Can be either M or F
+   }
+});
+
+}
+
+
+clevertap.event.push("Product Viewed");
+
+
+  function raiseevent_webpageviewed(){
+    clevertap.event.push("Webpage Viewed");
+
+}
+
+ function raiseevent(){
+    clevertap.event.push("link clicked");
+
+}
+
+clevertap.notifications.push({
+    "titleText":'Would you like to receive Push Notifications?',
+    "bodyText":'We promise to only send you relevant content and give you updates on your transactions',
+    "okButtonText":'Sign me up!',
+    "rejectButtonText":'No thanks',
+    "okButtonColor":'#f28046'});
+
+
+ function add(a,b) {
+    //var sum = a+b; Not correct.concatenates strings
+    var sum = parseInt(a) + parseInt(b);
+    alert(sum);
+  }
+
+function populate() {
+    var a = document.getElementById('Name1').value;
+    var b = document.getElementById('Email1').value;
+    alert(document.getElementById('Name1').value);
+    alert(document.getElementById('Email1').value);
+  }
+
+</script>
+
+<link rel="manifest" href="/manifest.json">
+
+</head>
+
+
+<body>
+<p align="center"><b>This is an alternate Test Site. </b></p>
+
+
+<!--<a href="https://www.google.com" onclick="raiseevent()"> Click on this link to Test Push Notifications</a></br>-->
+
+<a href="./index_alt.html" onclick="raiseevent()"> Click on this link to raise event link clicked</a></br>
+
+<a href="./index_alt.html" onclick="raiseevent_webpageviewed()"> Test Pop Up (Webpage Viewed event)</a></br>
+
+<!-- other ways to reaload the same apge
+<a href="#" onclick="window.location.reload(true);"> 
+<a href=".">refresh current page</a>
+<a href="">This page</a> but I don't think it preserves GET and POST data.
+
+<a href="javascript:window.location.reload(true)">Reload</a>
+
+-->
+
+<p>
+
+<form>
+  Name:
+  <input type="text" name="firstname" id="Name1"><br>
+  Email:
+  <input type="Email" name="Email" id="Email1"><br>
+  Telephone:
+  <input type="tel" name="usrtel" id="Telephone1"><br>
+  Gender:
+  <!--<div id="GenderSelect">-->
+  <input type="radio" name="gender" value="M" checked id="Gender1"> Male
+  <input type="radio" name="gender" value="F" id="Gender2"> Female<br>
+  <!--</div>-->
+
+
+
+<!--<input type="submit" value="Submit" onclick="add(document.getElementById('Name1').value,document.getElementById('Email1').value)">-->
+<!--Another function/another way-->
+
+<!--<input type="submit" value="Submit" onclick="populate()">-->
+
+
+<!--Final function call to populate user profile-->
+<input type="submit" value="Submit" onclick="populateUser()">
+
+
+
+
+<input type="reset"><br>
+<br>
+<br>
+<input type="button" onclick="alert('Hello World! Yay! This button Works!!')" value="Click Me! Test"><br>
+
+
+</form>
+
+
+</body>
+
+</html>
